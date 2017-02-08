@@ -1,5 +1,5 @@
 # CrawlerMicroService
-Distributed Realtime Microservice Architecture to Analyze Crawl Data
+Distributed Realtime Microservice Architecture to Extract, Analyze and Persist product data for retailers.
 
 (Ongoing Project More Services and Functionalities To Be Implemented)
 
