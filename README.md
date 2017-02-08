@@ -1,7 +1,9 @@
-# CrawlerMicroService - Ongoing Project More Services and Functionalities To Be Implemented
+# CrawlerMicroService
 Distributed Realtime Microservice Architecture to Analyze Crawl Data
 
-NOTES: This architecture is Single broker – Multiple topics – One partition/topic; can be extended to multiple brokers and consumer groups by adding in few configurations.
+(Ongoing Project More Services and Functionalities To Be Implemented)
+
+NOTE: This architecture is Single broker – Multiple topics – One partition/topic; can be extended to multiple brokers and consumer groups by adding in few configurations.
 
 Services:
 
