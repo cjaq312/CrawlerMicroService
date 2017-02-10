@@ -1,9 +1,11 @@
 # CrawlerMicroService
-Distributed Realtime Microservice Architecture to Extract, Analyze and Persist product data for retailers.
+Distributed Realtime Microservice Architecture to Extract, Analyze and Persist product data for retailers. This is complete flow from crawling till quality data delivery to customers through exposed restful resources
 
 (Ongoing Project More Services and Functionalities To Be Implemented)
 
 NOTE: This architecture is Single broker – Multiple topics – One partition/topic; can be extended to multiple brokers and consumer groups by adding in few configurations.
+
+Technology Used: Java, Spring, Hibernate, Apache Storm, Apache Kafka, Elastic Search, JAXRS(Jersey RESTful),Mysql, Maven, Tomcat Container
 
 Services:
 
@@ -65,4 +67,4 @@ Message Logger Bolt – Consumes product data emitted by Logger KafkaSpout and g
 #Product REST API
 Function: Exposes Restful API to access elastic cluster.
 
-Details: Exposes search endpoints to access product information from elastic cluster (on the backend elastic search performs full text search (precision, proximity search, partial matching using analysers– based on search request), filter, paginates and returns the actual or closest results)
+Details: Exposes search endpoints to access product information from database(currently in use)/elastic cluster (on the backend elastic search performs full text search (precision, proximity search, partial matching using analysers– based on search request), filter, paginates and returns the actual or closest results)
