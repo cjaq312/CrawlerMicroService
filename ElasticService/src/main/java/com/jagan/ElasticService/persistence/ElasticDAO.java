@@ -1,21 +1,25 @@
 package com.jagan.ElasticService.persistence;
 
-import java.util.List;
 
-import com.jagan.ElasticService.models.Product;
+import java.util.Map;
+
+import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.update.UpdateResponse;
 
 public interface ElasticDAO {
-	void insertProduct(Product p);
-	
-	void insertProducts(List<Product> products);
 
-	void deleteProduct(String id);
-	
-	void deleteProducts(List<String>products);
+	public boolean putRecord(String index, String type, String id, Map<String, Object> objectMap);
 
-	Product getProduct(String id);
+	public boolean postRecord(String index, String type, Map<String, Object> objectMap);
 
-	List<Product> getProducts();
-	
-	List<Product> executeQuery(String query);
+	public GetResponse getRecord(String index, String type, String id);
+
+	public SearchResponse searchRecord(String index, String type, Map<String, String> fieldMap);
+
+	public DeleteResponse deleteRecord(String index, String type, String id);
+
+	public UpdateResponse updateRecord(String index, String type, String id, Map<String, Object> objectMap);
+
 }

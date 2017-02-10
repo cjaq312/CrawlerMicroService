@@ -56,7 +56,7 @@
 		<guava>15.0</guava>
 
 		<!-- Elastic -->
-		<elastic>2.4.4</elastic>
+		<elastic>2.4.0</elastic>
 
 	</properties>
 
@@ -132,7 +132,7 @@
 			<version>${storm}</version>
 		</dependency>
 
-		<!-- kafka  -->
+		<!-- kafka -->
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka_2.10</artifactId>
@@ -192,13 +192,14 @@
 			<artifactId>guava</artifactId>
 			<version>${guava}</version>
 		</dependency>
-		
+
 		<!-- ElasticSearch -->
 		<dependency>
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
 			<version>${elastic}</version>
 		</dependency>
+
 	</dependencies>
 
 

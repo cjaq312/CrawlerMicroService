@@ -1,12 +1,11 @@
-package com.jagan.DatabaseService.persistence;
+package com.jagan.SearchApiService.persistence;
 
 import java.util.List;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.jagan.DatabaseService.models.Product;
+import com.jagan.SearchApiService.models.Product;
 
 public class PersistDAOImpl implements PersistDAO {
 	private List<Product> list;
@@ -81,7 +80,7 @@ public class PersistDAOImpl implements PersistDAO {
 		} finally {
 			session.close();
 		}
-		if (list!=null)
+		if (list != null && !list.isEmpty())
 			return list.get(0);
 		return null;
 	}

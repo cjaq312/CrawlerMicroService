@@ -1,14 +1,9 @@
-package com.jagan.DatabaseService.models;
+package com.jagan.SearchApiService.models;
 
-import java.io.Serializable;
 
-//import scala.Serializable;
+public class Product{
 
-public class Product {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	private String pid;
 	private String name;
 	private String longDescription;

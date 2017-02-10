@@ -1,118 +1,50 @@
 package com.jagan.ElasticService.persistence;
 
-import java.util.List;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
-import com.jagan.ElasticService.models.Product;
+import java.util.Map;
+
+import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.SearchType;
+import org.elasticsearch.action.update.UpdateResponse;
+import org.elasticsearch.client.Client;
 
 public class ElasticDAOImpl implements ElasticDAO {
+	private ElasticConnection connex = new ElasticConnection();
+	private Client client = connex.getClient();
+	private static ElasticDAOImpl dao = new ElasticDAOImpl();
 
-	private SessionFactory sessionFactory;
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	private ElasticDAOImpl() {
 	}
 
-	public SessionFactory getSessionFactory() {
-		return this.sessionFactory;
+	public static ElasticDAOImpl getInstance() {
+		return dao;
 	}
 
-	public void insertProduct(Product p) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		try {
-			session.save(p);
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
+		public boolean putRecord(String index, String type, String id, Map<String, Object> objectMap) {
+		return client.prepareIndex(index, type, id).setSource(objectMap).execute().actionGet().isCreated();
 	}
 
-	public void insertProducts(List<Product> products) {
-		for (Product p : products)
-			insertProduct(p);
+	public boolean postRecord(String index, String type, Map<String, Object> objectMap) {
+		return client.prepareIndex(index, type).setSource(objectMap).execute().actionGet().isCreated();
 	}
 
-	public void deleteProduct(String id) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		try {
-			Product c1 = (Product) session.load(Product.class, id);
-			session.delete(c1);
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
+	public GetResponse getRecord(String index, String type, String id) {
+		return client.prepareGet(index, type, id).execute().actionGet();
 	}
 
-	public void deleteProducts(List<String> products) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		try {
-			for (String p : products) {
-				Product c1 = (Product) session.load(Product.class, p);
-				session.delete(c1);
-			}
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
+	public SearchResponse searchRecord(String index, String type, Map<String, String> fieldMap) {
+		return client.prepareSearch(index).setTypes(type).setSearchType(SearchType.QUERY_AND_FETCH).setQuery(fieldMap)
+				.setFrom(0).setSize(60).setExplain(true).execute().actionGet();
 	}
 
-	public Product getProduct(String id) {
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		Product c1 = null;
-		try {
-			c1 = (Product) session.load(Product.class, id);
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
-		return c1;
+	public DeleteResponse deleteRecord(String index, String type, String id) {
+		return client.prepareDelete(index, type, id).execute().actionGet();
 	}
 
-	public List<Product> getProducts() {
-		List<Product> list = null;
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		try {
-			Query q = session.createSQLQuery("select * from products");
-			list = q.list();
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
-		return list;
-	}
-
-	public List<Product> executeQuery(String query) {
-		List<Product> list = null;
-		Session session = this.sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		try {
-			Query q = session.createSQLQuery(query);
-			list = q.list();
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
-		return list;
+	public UpdateResponse updateRecord(String index, String type, String id, Map<String, Object> objectMap) {
+		return client.prepareUpdate(index, type, id).setDoc(objectMap).execute().actionGet();
 	}
 
 }
