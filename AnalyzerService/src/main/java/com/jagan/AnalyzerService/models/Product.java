@@ -4,11 +4,8 @@ import com.jagan.AnalyzerService.models.Category;
 
 import scala.Serializable;
 
-public class Product implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Product {
+
 	private String pid;
 	private String name;
 	private String longDescription;
