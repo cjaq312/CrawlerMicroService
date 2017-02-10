@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.jagan.SearchApiService.models.Product" table="productspersist">
+		<id name="pid" column="id" type="string">
+		</id>
+		<property name="name" column="name" type="string" />
+		<property name="longDescription" column="longdescription"
+			type="string" />
+		<property name="smallDescription" column="smalldescription"
+			type="string" />
+		<property name="price" column="price" type="float" />
+		<property name="skuId" column="skuid" type="string" />
+		<property name="url" column="url" type="string" />
+		<property name="color" column="color" type="string" />
+		<property name="size" column="size" type="string" />
+		<property name="manufacturer" column="manufacturer" type="string" />
+		<property name="retailerName" column="retailerName" type="string" />
+		<property name="retailerId" column="retailerId" type="string" />
+
+		<component name="categories" class="com.jagan.SearchApiService.models.Category">
+			<property name="primaryCategory" type="string" column="primarycategory"/>
+			<property name="secondaryCategory" type="string" column="secondarycategory" />
+			<property name="tertiaryCategory" type="string" column="tertiarycategory"/>
+		</component>
+	</class>
+
+</hibernate-mapping>  
