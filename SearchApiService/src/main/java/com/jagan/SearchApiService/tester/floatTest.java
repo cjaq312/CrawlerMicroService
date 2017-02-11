@@ -10,6 +10,6 @@ public class floatTest {
 		map.put("startprice", "32");
 		map.put("endprice", "34");
 		map.put("sdon", "don");
-		System.out.println(QueryGenerator.generateConditions(map));
+		System.out.println(QueryGenerator.generateConditions(map,"persist"));
 	}
 }

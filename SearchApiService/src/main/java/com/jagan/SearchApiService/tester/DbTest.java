@@ -1,13 +1,30 @@
 package com.jagan.SearchApiService.tester;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.jagan.SearchApiService.models.Category;
 import com.jagan.SearchApiService.models.Product;
-import com.jagan.SearchApiService.persistence.InternalMemory;
+import com.jagan.SearchApiService.persistence.PersistDAO;
 
 public class DbTest {
 	public static void main(String[] args) {
-		System.out.println(InternalMemory.productMap);
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-		InternalMemory.productMap.put("345", new Product());
-		System.out.println(InternalMemory.productMap);
+		PersistDAO cacheDAO = (PersistDAO) context.getBean("cacheDAO");
+
+		Product product = new Product();
+		product.setPid("test2");
+		Category cat = new Category();
+		product.setCategories(cat);
+		
+		product.getCategories().setPrimaryCategory("Prime");
+
+//		 cacheDAO.insertProduct(product);
+//		for (Product i : cacheDAO.getProducts())
+//			System.out.println(i.toString());
+
+		System.out.println(cacheDAO.executeQuery("select * from Product"));
+		
+		context.close();
 	}
 }

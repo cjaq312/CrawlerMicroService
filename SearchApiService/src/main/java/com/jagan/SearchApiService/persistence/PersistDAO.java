@@ -5,15 +5,13 @@ import java.util.List;
 import com.jagan.SearchApiService.models.Product;
 
 public interface PersistDAO {
+	Product insertProduct(Product p);
+	
+	Product deleteProduct(String id);
 
-	public Product getProduct(String id);
+	Product getProduct(String id);
 
-	public List<Product> getAllProducts();
-
-	public Product deleteProduct(String id);
-
-	public Product putProduct(Product product);
-
-	public Product postProduct(Product product);
-
+	List<Product> getProducts();
+	
+	List<Product> executeQuery(String query);
 }
