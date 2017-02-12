@@ -5,16 +5,16 @@ public class DataSanitizer {
 	public DataSanitizer() {
 	}
 
-	public static String cleanURL(String url) {
-		return url;
+	public static String cleanField(String field) {
+		return WebElementValidatorUtil.cleanField(field);
 	}
 
 	public static String cleanImage(String image) {
-		return image;
+		return WebElementValidatorUtil.cleanImage(image);
 	}
 
-	public static String cleanField(String field) {
-		return field;
+	public static String cleanURL(String url) {
+		return WebElementValidatorUtil.cleanURL(url);
 	}
 
 	public static float cleanPrice(String price) {
@@ -27,4 +27,5 @@ public class DataSanitizer {
 		}
 		return result;
 	}
+
 }

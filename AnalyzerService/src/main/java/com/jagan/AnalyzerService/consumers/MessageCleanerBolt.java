@@ -10,6 +10,7 @@ import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
+import com.jagan.AnalyzerService.utils.StringUtils;
 
 import com.jagan.AnalyzerService.config.Configuration;
 import com.jagan.AnalyzerService.utils.DataSanitizer;
@@ -34,25 +35,35 @@ public class MessageCleanerBolt implements IRichBolt {
 
 		if (parsedList.size() == 0)
 			return;
-		
-		this.collector.emit(new Values(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("pid"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("name"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("longdescription"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("smalldescription"))),
-				DataSanitizer.cleanPrice(parsedList.get(Configuration.getMapping("price"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("skuid"))),
-				DataSanitizer.cleanURL(parsedList.get(Configuration.getMapping("url"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("color"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("size"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("primary"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("secondary"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("tertiary"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("manufacturer"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("retailername"))),
-				DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("retailerid"))),
-				DataSanitizer.cleanImage(parsedList.get(Configuration.getMapping("largeimage"))),
-				DataSanitizer.cleanImage(parsedList.get(Configuration.getMapping("smallimage")))));
-		
+
+		this.collector.emit(new Values(
+				StringUtils.doubleQuote(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("pid")))),
+				StringUtils.doubleQuote(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("name")))),
+				StringUtils.doubleQuote(
+						DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("longdescription")))),
+				StringUtils.doubleQuote(
+						DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("smalldescription")))),
+				StringUtils.doubleQuote(
+						String.valueOf(DataSanitizer.cleanPrice(parsedList.get(Configuration.getMapping("price"))))),
+				StringUtils.doubleQuote(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("skuid")))),
+				StringUtils.doubleQuote(DataSanitizer.cleanURL(parsedList.get(Configuration.getMapping("url")))),
+				StringUtils.doubleQuote(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("color")))),
+				StringUtils.doubleQuote(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("size")))),
+				StringUtils.doubleQuote(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("primary")))),
+				StringUtils
+						.doubleQuote(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("secondary")))),
+				StringUtils.doubleQuote(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("tertiary")))),
+				StringUtils.doubleQuote(
+						DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("manufacturer")))),
+				StringUtils.doubleQuote(
+						DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("retailername")))),
+				StringUtils
+						.doubleQuote(DataSanitizer.cleanField(parsedList.get(Configuration.getMapping("retailerid")))),
+				StringUtils
+						.doubleQuote(DataSanitizer.cleanImage(parsedList.get(Configuration.getMapping("largeimage")))),
+				StringUtils.doubleQuote(
+						DataSanitizer.cleanImage(parsedList.get(Configuration.getMapping("smallimage"))))));
+
 		parsedList.clear();
 	}
 

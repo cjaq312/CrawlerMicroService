@@ -47,7 +47,7 @@ public class Analyzer {
 	}
 
 	public static boolean isFieldEmpty(String field) {
-		return field.replaceAll("\"", "").length() == 0;
+		return StringUtils.isEmpty(field.replaceAll("\"", ""));
 	}
 
 	public static boolean validateURL(String url) {

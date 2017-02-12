@@ -28,7 +28,7 @@ public class RecordParser {
 				break;
 			}
 		}
-		tokensList.add(b.toString());
+		tokensList.add(StringUtils.doubleUnQuote(b.toString()));
 		return tokensList;
 	}
 

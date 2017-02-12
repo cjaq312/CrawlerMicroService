@@ -32,27 +32,6 @@ public class MessageAnalyzerBolt implements IRichBolt {
 
 		if (Analyzer.validateTuple(tuple)) {
 			this.collector.emit("valid-analyzer-bolt", new Values(temp));
-			/*
-			 * this.collector.emit("log", new
-			 * Values(tuple.getString(Configuration.getMapping("pid")),
-			 * tuple.getString(Configuration.getMapping("name")),
-			 * tuple.getString(Configuration.getMapping("longdescription")),
-			 * tuple.getString(Configuration.getMapping("smalldescription")),
-			 * tuple.getFloat(Configuration.getMapping("price")),
-			 * tuple.getString(Configuration.getMapping("skuid")),
-			 * tuple.getString(Configuration.getMapping("url")),
-			 * tuple.getString(Configuration.getMapping("color")),
-			 * tuple.getString(Configuration.getMapping("size")),
-			 * tuple.getString(Configuration.getMapping("primary")),
-			 * tuple.getString(Configuration.getMapping("secondary")),
-			 * tuple.getString(Configuration.getMapping("tertiary")),
-			 * tuple.getString(Configuration.getMapping("manufacturer")),
-			 * tuple.getString(Configuration.getMapping("retailername")),
-			 * tuple.getString(Configuration.getMapping("retailerid")),
-			 * tuple.getString(Configuration.getMapping("largeimage")),
-			 * tuple.getString(Configuration.getMapping("smallimage")),
-			 * "Valid"));
-			 */
 		} else {
 			this.status = "InValid";
 			this.collector.emit("invalid-analyzer-bolt", new Values(temp));
