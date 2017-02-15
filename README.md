@@ -9,7 +9,7 @@ Technology Used: Java, Spring, Hibernate, Apache Storm, Apache Kafka, Elastic Se
 
 Services:
 
-#Crawler Service 
+#Crawler Service (To Be Implemented)
 Function: Crawls website to scrap raw product data (Crawler referenced by feed name”retailer name”)
 
 Detail: Contains one spout and two bolts – URL KafkaSpout, Data Indexer bolt and Data Extraction Bolt
@@ -55,7 +55,7 @@ Message Elastic KafkaSpout - Subscribes to Kafka topic (Elastic), consumes produ
 
 Message Elastic Bolt – Consumes product data emitted by Elastic KafkaSpout and indexes them into elastic search cluster.
 
-#Logging Service
+#Logging Service (To Be Implemented)
 Function: Gives statistics on crawled data – Failures and Success for each retailer.
 
 Details: Contains one spout and one bolt – Message Logger KafkaSpout and Message Logger Bolt 
