@@ -13,7 +13,7 @@ public class Product {
 	private String name;
 	private String longDescription;
 	private String smallDescription;
-	private float price;
+	private String price;
 	private String skuId;
 	private String url;
 	private String color;
@@ -30,7 +30,7 @@ public class Product {
 		setName("");
 		setLongDescription("");
 		setSmallDescription("");
-		setPrice(0);
+		setPrice("");
 		setSkuId("");
 		setUrl("");
 		setColor("");
@@ -75,11 +75,11 @@ public class Product {
 		this.smallDescription = smallDescription;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -168,7 +168,7 @@ public class Product {
 		setName("");
 		setLongDescription("");
 		setSmallDescription("");
-		setPrice(0);
+		setPrice("");
 		setSkuId("");
 		setUrl("");
 		setColor("");

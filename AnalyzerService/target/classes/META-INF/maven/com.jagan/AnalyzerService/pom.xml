@@ -55,6 +55,8 @@
 		<!-- guava -->
 		<guava>15.0</guava>
 
+		<!-- Selenium -->
+		<selenium.version>2.52.0</selenium.version>
 	</properties>
 
 	<dependencies>
@@ -226,6 +228,13 @@
 			<groupId>com.googlecode.juniversalchardet</groupId>
 			<artifactId>juniversalchardet</artifactId>
 			<version>1.0.3</version>
+		</dependency>
+
+		<!-- Selenium -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-htmlunit-driver</artifactId>
+			<version>${selenium.version}</version>
 		</dependency>
 	</dependencies>
 

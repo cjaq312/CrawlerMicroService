@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.jagan.CrawlerService.models.ScrappedUrl" table="urlsscache">
+	<class name="com.jagan.CrawlerService.models.ScrappedUrl" table="urlscache">
 		<id name="url" column="url" type="string">
 		</id>
 		<property name="urlType" column="urltype" type="string" />

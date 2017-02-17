@@ -51,6 +51,9 @@
 
 		<!-- testng -->
 		<testng>6.8.5</testng>
+
+		<!-- Selenium -->
+		<selenium.version>2.52.0</selenium.version>
 	</properties>
 
 	<dependencies>
@@ -233,8 +236,21 @@
 			<artifactId>json</artifactId>
 			<version>${json.version}</version>
 		</dependency>
+
+		<!-- Selenium -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-htmlunit-driver</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.9</version>
+		</dependency>
 	</dependencies>
-		<!-- Builds -->
+	<!-- Builds -->
 	<build>
 		<plugins>
 			<plugin>

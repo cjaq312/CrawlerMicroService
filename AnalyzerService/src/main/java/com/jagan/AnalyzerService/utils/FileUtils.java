@@ -232,49 +232,42 @@ public class FileUtils {
 	}
 
 	public static FilenameFilter filterFeedFiles = new FilenameFilter() {
-		@Override
 		public boolean accept(final File file, final String name) {
 			return (name.toLowerCase().endsWith(EXTENSION_FEED_FILE));
 		}
 	};
 
 	public static FilenameFilter filterLogFiles = new FilenameFilter() {
-		@Override
 		public boolean accept(final File file, final String name) {
 			return (name.toLowerCase().endsWith(EXTENSION_LOG_FILE));
 		}
 	};
 
 	public static FilenameFilter filterZips = new FilenameFilter() {
-		@Override
 		public boolean accept(final File file, final String name) {
 			return (name.toLowerCase().endsWith(EXTENSION_ZIP));
 		}
 	};
 
 	public static FilenameFilter filterGzips = new FilenameFilter() {
-		@Override
 		public boolean accept(final File file, final String name) {
 			return (name.toLowerCase().endsWith(EXTENSION_GZIP) || name.toLowerCase().endsWith(EXTENSION_GZIP_ALT));
 		}
 	};
 
 	public static FilenameFilter filterParseableFiles = new FilenameFilter() {
-		@Override
 		public boolean accept(final File file, final String name) {
 			return ((name.toLowerCase().endsWith(EXTENSION_TSV)) || (name.toLowerCase().endsWith(EXTENSION_XML)) || (name.toLowerCase().endsWith(EXTENSION_TXT)));
 		}
 	};
 
 	public static FilenameFilter filterParseableFilesNonXml = new FilenameFilter() {
-		@Override
 		public boolean accept(final File file, final String name) {
 			return ((name.toLowerCase().endsWith(EXTENSION_TSV)) || (name.toLowerCase().endsWith(EXTENSION_TXT)));
 		}
 	};
 
 	public static FilenameFilter filterTsv = new FilenameFilter() {
-		@Override
 		public boolean accept(final File file, final String name) {
 			return (name.toLowerCase().endsWith(EXTENSION_TSV));
 		}

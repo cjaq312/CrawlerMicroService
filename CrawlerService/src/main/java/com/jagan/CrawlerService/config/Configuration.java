@@ -5,48 +5,49 @@ import java.util.Collection;
 import java.util.HashMap;
 
 public class Configuration {
-	public static final HashMap<String, Integer> MAP = new HashMap<String, Integer>();
-	public static final Collection<Integer> SKIP_LIST = new ArrayList<Integer>();
-	public static final Collection<Integer> EXCLUDE_LIST = new ArrayList<Integer>();
-	
-	public static final String ZOOKEEPER_ADDRESS= "localhost:2181";
-	public static final String BROKER_ADDRESS= "localhost:9092";
+	public static final HashMap<String, Integer> PRODUCTMAP = new HashMap<String, Integer>();
+	public static final HashMap<String, Integer> URLMAP = new HashMap<String, Integer>();
 
-	public static final String PRODUCER_DATAURL_TOPIC_NAME = "dataURLs";
+	public static final String ZOOKEEPER_ADDRESS = "localhost:2181";
+	public static final String BROKER_ADDRESS = "localhost:9092";
 
-	public static final String CONSUMER_GROUPID= "datURLConsumer";
-	public static final String CONSUMER_DATAURL_TOPIC_NAME = "dataURLs";
 	public static final String PRODUCER_ANALYZER_TOPIC_NAME = "dataAnalyzer";
-	
 
 	static {
-		MAP.put("pid", 0);
-		MAP.put("name", 1);
-		MAP.put("longdescription", 2);
-		MAP.put("smalldescription", 3);
-		MAP.put("price", 4);
-		MAP.put("skuid", 5);
-		MAP.put("url", 6);
-		MAP.put("color", 7);
-		MAP.put("size", 8);
-		MAP.put("primary", 9);
-		MAP.put("secondary", 10);
-		MAP.put("tertiary", 11);
-		MAP.put("manufacturer", 12);
-		MAP.put("retailername", 13);
-		MAP.put("retailerid", 14);
-		MAP.put("largeimage", 15);
-		MAP.put("smallimage", 16);
+		PRODUCTMAP.put("pid", 0);
+		PRODUCTMAP.put("name", 1);
+		PRODUCTMAP.put("longdescription", 2);
+		PRODUCTMAP.put("smalldescription", 3);
+		PRODUCTMAP.put("price", 4);
+		PRODUCTMAP.put("skuid", 5);
+		PRODUCTMAP.put("url", 6);
+		PRODUCTMAP.put("color", 7);
+		PRODUCTMAP.put("size", 8);
+		PRODUCTMAP.put("primary", 9);
+		PRODUCTMAP.put("secondary", 10);
+		PRODUCTMAP.put("tertiary", 11);
+		PRODUCTMAP.put("manufacturer", 12);
+		PRODUCTMAP.put("retailername", 13);
+		PRODUCTMAP.put("retailerid", 14);
+		PRODUCTMAP.put("largeimage", 15);
+		PRODUCTMAP.put("smallimage", 16);
 
-		SKIP_LIST.add(MAP.get("url"));
-		SKIP_LIST.add(MAP.get("largeimage"));
-		SKIP_LIST.add(MAP.get("smallimage"));
-		SKIP_LIST.add(MAP.get("price"));
+		URLMAP.put("url", 0);
+		URLMAP.put("urltype", 1);
+		URLMAP.put("retailerName", 2);
+		URLMAP.put("visited", 3);
 	}
 
-	public static int getMapping(String key) {
-		if (MAP.containsKey(key))
-			return MAP.get(key);
+	public static int getProductMapping(String key) {
+		if (PRODUCTMAP.containsKey(key))
+			return PRODUCTMAP.get(key);
+		else
+			return -1;
+	}
+	
+	public static int getUrlMapping(String key) {
+		if (URLMAP.containsKey(key))
+			return URLMAP.get(key);
 		else
 			return -1;
 	}

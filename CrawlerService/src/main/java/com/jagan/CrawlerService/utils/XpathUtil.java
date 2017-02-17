@@ -29,7 +29,7 @@ public class XpathUtil {
 		if (result.size() > 0)
 			return result.get(0);
 		else
-			return null;
+			return "";
 	}
 
 	public static List<String> xPathEvalList(String content, String expression) throws XPathExpressionException {

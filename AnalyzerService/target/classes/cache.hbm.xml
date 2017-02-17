@@ -20,6 +20,8 @@
 		<property name="manufacturer" column="manufacturer" type="string" />
 		<property name="retailerName" column="retailerName" type="string" />
 		<property name="retailerId" column="retailerId" type="string" />
+		<property name="largeImage" column="largeimage" type="string" />
+		<property name="smallImage" column="smallimage" type="string" />
 
 		<component name="categories" class="com.jagan.AnalyzerService.models.Category">
 			<property name="primaryCategory" type="string" />

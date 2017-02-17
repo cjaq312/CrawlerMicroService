@@ -25,11 +25,9 @@ public class MessageCleanerBolt implements IRichBolt {
 	private OutputCollector collector;
 	private List<String> parsedList;
 
-	@Override
 	public void cleanup() {
 	}
 
-	@Override
 	public void execute(Tuple tuple) {
 		parsedList = RecordParser.parse(tuple.getString(0));
 
@@ -67,19 +65,16 @@ public class MessageCleanerBolt implements IRichBolt {
 		parsedList.clear();
 	}
 
-	@Override
 	public void prepare(Map map, TopologyContext context, OutputCollector collector) {
 		this.collector = collector;
 	}
 
-	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
 		declarer.declare(new Fields("pid", "name", "longdescription", "smalldescription", "price", "skuid", "url",
 				"color", "size", "primary", "secondary", "tertiary", "manufacturer", "retailername", "retailerid",
 				"largeimage", "smallimage"));
 	}
 
-	@Override
 	public Map<String, Object> getComponentConfiguration() {
 		return null;
 	}
