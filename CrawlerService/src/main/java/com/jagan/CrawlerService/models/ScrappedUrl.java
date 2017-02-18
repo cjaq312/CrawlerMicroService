@@ -45,5 +45,9 @@ public class ScrappedUrl {
 	public void setVisited(boolean visited) {
 		this.visited = visited;
 	}
+	
+	public String toString(){
+		return url;
+	}
 
 }

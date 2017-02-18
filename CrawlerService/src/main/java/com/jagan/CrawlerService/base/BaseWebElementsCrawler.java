@@ -1,4 +1,4 @@
-package com.jagan.CrawlerService.crawler;
+package com.jagan.CrawlerService.base;
 
 import java.util.List;
 import java.util.Properties;
@@ -11,7 +11,7 @@ import com.jagan.CrawlerService.utils.WebDriverUtil;
 import com.jagan.CrawlerService.utils.WebElementExtractor;
 import com.jagan.CrawlerService.utils.XpathUtil;
 
-public class BaseCrawler {
+public class BaseWebElementsCrawler {
 
 	public static Product loadUrl(String url, Properties prop) {
 		Product product = new Product();

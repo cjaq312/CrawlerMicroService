@@ -9,6 +9,14 @@ public class WebElementExtractor {
 	public static String getPid(String content, String xpath) throws XPathExpressionException {
 		return StringUtils.doubleQuote(XpathUtil.xPathEvalSingle(content, xpath).trim());
 	}
+	
+	public static List<String> getUrls(String content, String xpath) throws XPathExpressionException {
+		List<String> list = new ArrayList<String>();
+		for (String i : XpathUtil.xPathEvalList(content, xpath)) {
+			list.add(i.trim());
+		}
+		return list;
+	}
 
 	public static String getProductName(String content, String xpath) throws XPathExpressionException {
 		return StringUtils.doubleQuote(XpathUtil.xPathEvalSingle(content, xpath).trim());

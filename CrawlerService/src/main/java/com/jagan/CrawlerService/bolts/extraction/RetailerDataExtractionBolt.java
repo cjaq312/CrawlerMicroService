@@ -15,9 +15,12 @@ import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.jagan.CrawlerService.crawler.BaseCrawler;
+import com.jagan.CrawlerService.base.BaseWebElementsCrawler;
 import com.jagan.CrawlerService.models.Product;
+import com.jagan.CrawlerService.models.ScrappedUrl;
+import com.jagan.CrawlerService.persistence.PersistDAO;
 import com.jagan.CrawlerService.utils.RecordParser;
 
 public class RetailerDataExtractionBolt implements IRichBolt {
@@ -26,6 +29,8 @@ public class RetailerDataExtractionBolt implements IRichBolt {
 	private OutputCollector collector;
 	private String temp;
 	FileReader input = null;
+	ClassPathXmlApplicationContext applicationcontext;
+	PersistDAO cacheDAO;
 
 
 	private Properties prop;
@@ -41,8 +46,6 @@ public class RetailerDataExtractionBolt implements IRichBolt {
 		// crawl the data and emit to kafka queue - analyzerQ
 		parsedList = RecordParser.parse(temp);
 
-		//check db for visited
-
 		try {
 			input = new FileReader(new File("src/main/resources/"+parsedList.get(0)+".properties"));
 			prop.load(input);
@@ -51,7 +54,7 @@ public class RetailerDataExtractionBolt implements IRichBolt {
 			e.printStackTrace();
 		}
 
-		Product product = BaseCrawler.loadUrl(parsedList.get(1), prop);
+		Product product = BaseWebElementsCrawler.loadUrl(parsedList.get(1), prop);
 
 		this.collector.emit(new Values(product.getPid(), product.getName(), product.getLongDescription(),
 				product.getSmallDescription(), product.getPrice(), product.getSkuId(), product.getUrl(),
@@ -70,6 +73,8 @@ public class RetailerDataExtractionBolt implements IRichBolt {
 	public void prepare(Map map, TopologyContext context, OutputCollector collector) {
 		this.collector = collector;
 		prop = new Properties();
+		applicationcontext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		cacheDAO = (PersistDAO) applicationcontext.getBean("persistDAO");
 	}
 
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {

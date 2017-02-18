@@ -20,11 +20,11 @@ public class DBTest {
 		url.setUrl("testUrl1");
 		url.setUrlType("test");
 		url.setVisited(true);
-		
-		 cacheDAO.insertUrl(url);
-		for (ScrappedUrl i : cacheDAO.getVisitedUrls("TestRetailer", "test"))
-			System.out.println(i.toString());
 
+		cacheDAO.insertUrl(url);
+//		 for (ScrappedUrl i : cacheDAO.getVisitedUrls("TestRetailer", "test"))
+//		 System.out.println(i.toString());
+		System.out.println(cacheDAO.getUrl("testUrl"));
 		context.close();
 
 	}

@@ -12,8 +12,14 @@ public interface PersistDAO {
 	void deleteUrl(String url);
 	
 	void deleteUrls(List<String>urls);
+	
+	ScrappedUrl getUrl(String url);
 
 	List<ScrappedUrl> getUnvisitedUrls(String retailerName, String urlType);
 	
 	List<ScrappedUrl> getVisitedUrls(String retailerName, String urlType);
+	
+	void setVisited(String url);
+	
+	void setVisited(ScrappedUrl url);
 }

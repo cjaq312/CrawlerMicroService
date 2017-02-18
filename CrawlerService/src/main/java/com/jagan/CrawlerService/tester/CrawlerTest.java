@@ -10,7 +10,7 @@ import java.io.OutputStream;
 import java.io.Reader;
 import java.util.Properties;
 
-import com.jagan.CrawlerService.crawler.BaseCrawler;
+import com.jagan.CrawlerService.base.BaseWebElementsCrawler;
 import com.jagan.CrawlerService.models.Product;
 
 public class CrawlerTest {
@@ -27,7 +27,7 @@ public class CrawlerTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Product product = BaseCrawler
+		Product product = BaseWebElementsCrawler
 				.loadUrl("https://www.beautyboutique.ca/Categories/Makeup/Face/Foundation/Miracle-Cushion/p/LZ27?variantCode=4935421601924", prop);
 
 		System.out.println(product.getPid());

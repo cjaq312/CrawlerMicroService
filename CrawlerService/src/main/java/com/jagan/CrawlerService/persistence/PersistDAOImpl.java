@@ -106,5 +106,52 @@ public class PersistDAOImpl implements PersistDAO {
 		return list;
 	}
 
-	
+	public ScrappedUrl getUrl(String url) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			list = session.createQuery("from ScrappedUrl where url = :url").setParameter("url", url).list();
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+		if (list == null)
+			return null;
+		else if (list.isEmpty())
+			return null;
+		return list.get(0);
+	}
+
+	public void setVisited(String url) {
+
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			ScrappedUrl c1 = (ScrappedUrl) session.load(ScrappedUrl.class, url);
+			c1.setVisited(true);
+			session.update(c1);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+	}
+
+	public void setVisited(ScrappedUrl url) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			url.setVisited(true);
+			session.update(url);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+	}
+
 }
