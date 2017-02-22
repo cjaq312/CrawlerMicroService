@@ -9,7 +9,7 @@ Technology Used: Java, Spring, Hibernate, Apache Storm, Apache Kafka, Elastic Se
 
 Services:
 
-#Crawler Service (To Be Implemented)
+#Crawler Service
 Function: Crawls website to scrap raw product data (Crawler referenced by feed name”retailer name”)
 
 Detail: Contains one spout and two bolts – URL KafkaSpout, Data Indexer bolt and Data Extraction Bolt
